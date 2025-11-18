@@ -3,11 +3,10 @@ name: EverShop + testRigor CI
 on:
   push:
     branches:
-      - main
-      - "feature/*"
+      - '**'
   pull_request:
     branches:
-      - main
+      - '**'
 
 jobs:
   evershop-testrigor:
