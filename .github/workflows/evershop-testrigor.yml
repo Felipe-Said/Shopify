@@ -26,7 +26,10 @@ jobs:
           npm install -g testrigor-cli    
           testrigor --version
           
-      - name: Install testRigor CLI
+      - name: Docker Setup Compose
+        uses: docker/setup-compose-action@v1.2.0
+      
+      - name: Install Evershop with Docker
         run: |
           curl -sSL https://raw.githubusercontent.com/evershopcommerce/evershop/main/docker-compose.yml > docker-compose.yml
           docker-compose up -d
