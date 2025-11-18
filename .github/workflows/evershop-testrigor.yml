@@ -29,9 +29,54 @@ jobs:
       - name: Verify EverShop storefront is up
         run: curl -LI http://143.198.70.2:4000
 
-      - name: Run testRigor suite against EverShop
+      - name: Run testRigor suite via API
         env:
           TESTRIGOR_CICD_TOKEN: ${{ secrets.TESTRIGOR_CICD_TOKEN }}
           TESTRIGOR_SUITE_ID: ${{ vars.TESTRIGOR_SUITE_ID }}
-        run: testrigor --cicdToken "${TESTRIGOR_CICD_TOKEN}" --suiteId "${TESTRIGOR_SUITE_ID}" --url "http://143.198.70.2:4000"
+        run: |
+          curl -X POST \
+            -H 'Content-type: application/json' \
+            -H "auth-token: ${TESTRIGOR_CICD_TOKEN}" \
+            --data '{"forceCancelPreviousTesting":true,"storedValues":{"storedValueName1":"Value"}}' \
+            "https://api.testrigor.com/api/v1/apps/${TESTRIGOR_SUITE_ID}/retest"
 
+          sleep 10
+
+          while true
+          do
+            echo " "
+            echo "==================================="
+            echo " Checking run status"
+            echo "==================================="
+            response=$(curl -i -s -X GET "https://api.testrigor.com/api/v1/apps/${TESTRIGOR_SUITE_ID}/status" -H "auth-token: ${TESTRIGOR_CICD_TOKEN}" -H "Accept: application/json")
+            code=$(echo "$response" | grep HTTP | awk '{print $2}')
+            body=$(echo "$response" | sed -n '/{/,/}/p')
+            echo "Status code: $code"
+            echo "Response: $body"
+            case $code in
+              4*|5*)
+                echo "Error calling API"
+                exit 1
+                ;;
+              200)
+                echo "Test finished successfully"
+                exit 0
+                ;;
+              227|228)
+                echo "Test is not finished yet"
+                ;;
+              229)
+                echo "Test canceled"
+                exit 1
+                ;;
+              230)
+                echo "Test finished but failed"
+                exit 1
+                ;;
+              *)
+                echo "Unknown status"
+                exit 1
+                ;;
+            esac
+            sleep 10
+          done
