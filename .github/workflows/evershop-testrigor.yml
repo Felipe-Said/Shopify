@@ -33,5 +33,5 @@ jobs:
         env:
           TESTRIGOR_CICD_TOKEN: ${{ secrets.TESTRIGOR_CICD_TOKEN }}
           TESTRIGOR_SUITE_ID: ${{ vars.TESTRIGOR_SUITE_ID }}
-        run: |
-          testrigor --cicdToken "$TESTRIGOR_CICD_TOKEN" --suiteId "$TESTRIGOR_SUITE_ID" --url "http://143.198.70.2:4000"
+        run: testrigor --cicdToken "${TESTRIGOR_CICD_TOKEN}" --suiteId "${TESTRIGOR_SUITE_ID}" --url "http://143.198.70.2:4000"
+
