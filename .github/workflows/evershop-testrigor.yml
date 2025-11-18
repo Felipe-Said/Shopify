@@ -23,15 +23,21 @@ jobs:
 
       - name: Install testRigor CLI
         run: |
-          npm install -g testrigor-cli
+          npm install -g testrigor-cli    
           testrigor --version
-
+          
+      - name: Install testRigor CLI
+        run: |
+          curl -sSL https://raw.githubusercontent.com/evershopcommerce/evershop/main/docker-compose.yml > docker-compose.yml
+          docker-compose up -d
+          npm run user:create -- --email ${{ secrets.ADMIN_EMAIL }} --password ${{ secrets.ADMIN_PASS }}  --name "Admin"
+          
       - name: Verify EverShop storefront is up
-        run: curl -LI http://143.198.70.2:4000
+        run: curl -LI http://localhost:3000
 
       - name: Run testRigor suite via CLI
         env:
           TESTRIGOR_CICD_TOKEN: ${{ secrets.TESTRIGOR_CICD_TOKEN }}
           TESTRIGOR_SUITE_ID: ${{ vars.TESTRIGOR_SUITE_ID }}
-        run: testrigor test-suite run "$TESTRIGOR_SUITE_ID" --token "$TESTRIGOR_CICD_TOKEN" --url "http://143.198.70.2:4000/admin"
+        run: testrigor test-suite run "$TESTRIGOR_SUITE_ID" --token "$TESTRIGOR_CICD_TOKEN" --url "http://localhost:3000/admin"
 
