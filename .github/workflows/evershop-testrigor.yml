@@ -16,3 +16,26 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      - name: Install testRigor CLI
+        run: |
+          npm install -g testrigor-cli
+          testrigor --version
+
+      - name: Verify EverShop storefront is up
+        run: curl -LI http://143.198.70.2:4000
+
+      - name: Run testRigor suite against EverShop
+        env:
+          TESTRIGOR_CICD_TOKEN: ${{ secrets.TESTRIGOR_CICD_TOKEN }}
+          TESTRIGOR_SUITE_ID: ${{ vars.TESTRIGOR_SUITE_ID }}
+        run: |
+          testrigor \
+            --cicdToken "$TESTRIGOR_CICD_TOKEN" \
+            --suiteId "$TESTRIGOR_SUITE_ID" \
+            --url "http://143.198.70.2:4000"
