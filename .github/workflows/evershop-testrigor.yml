@@ -37,12 +37,11 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: "18"
+          node-version: '18'
 
       - name: Install dependencies
         run: npm install
 
-      # 🔥 FIX: Add EverShop CLI installation
       - name: Install EverShop CLI
         run: |
           npm install -g @evershop/cli
@@ -81,3 +80,10 @@ jobs:
           testrigor --version
 
       - name: Run testRigor suite via CLI
+        env:
+          TESTRIGOR_CICD_TOKEN: ${{ secrets.TESTRIGOR_CICD_TOKEN }}
+          TESTRIGOR_SUITE_ID: ${{ vars.TESTRIGOR_SUITE_ID }}
+        run: |
+          testrigor test-suite run "$TESTRIGOR_SUITE_ID" \
+            --token "$TESTRIGOR_CICD_TOKEN" \
+            --url "http://localhost:3000/admin"
