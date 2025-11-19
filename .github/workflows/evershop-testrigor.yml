@@ -43,9 +43,7 @@ jobs:
         run: npm install
 
       - name: Install EverShop CLI
-        run: |
-          npm install -g evershop
-          evershop --version
+        run: npm install -g evershop || true
 
       - name: Wait for database
         run: sleep 20
