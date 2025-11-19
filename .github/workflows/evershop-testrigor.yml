@@ -1,4 +1,4 @@
-name: EverShop + testRigor CI
+name: EverShop + testRigor CI (npm)
 
 on:
   push:
@@ -12,35 +12,87 @@ jobs:
   evershop-testrigor:
     runs-on: ubuntu-latest
 
+    # 1) Start a Postgres database for EverShop
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_DB: evershop
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+
+    # 2) Tell EverShop how to connect to that Postgres DB
+    env:
+      DB_HOST: 127.0.0.1
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: evershop
+      DB_SSLMODE: disable
+
     steps:
+      # A) Get your code
       - name: Checkout repo
         uses: actions/checkout@v4
 
+      # B) Install Node.js
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
           node-version: "18"
 
-      - name: Install testRigor CLI
+      # C) Install npm dependencies (this installs @evershop/evershop too)
+      - name: Install dependencies
+        run: npm install
+
+      # D) Give Postgres a few seconds to be ready
+      - name: Wait for database
+        run: sleep 20
+
+      # E) Run EverShop install (creates DB tables, basic config, admin setup logic)
+      - name: Run EverShop setup
+        run: npm run setup
+
+      # F) Create EverShop admin user (this is the one you use in testRigor)
+      - name: Create EverShop admin user
+        env:
+          ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
+          ADMIN_PASSWORD: ${{ secrets.ADMIN_PASS }}
         run: |
-          npm install -g testrigor-cli    
-          testrigor --version
-          
-      - name: Docker Setup Compose
-        uses: docker/setup-compose-action@v1.2.0
-      
-      - name: Install Evershop with Docker
+          npm run user:create -- \
+            --email "$ADMIN_EMAIL" \
+            --password "$ADMIN_PASSWORD" \
+            --name "Admin"
+
+      # G) Build the app
+      - name: Build EverShop
+        run: npm run build
+
+      # H) Start the app (storefront + admin) in the background
+      - name: Start EverShop
         run: |
-          curl -sSL https://raw.githubusercontent.com/evershopcommerce/evershop/main/docker-compose.yml > docker-compose.yml
-          docker-compose up -d
-          npm run user:create -- --email ${{ secrets.ADMIN_EMAIL }} --password ${{ secrets.ADMIN_PASS }}  --name "Admin"
-          
+          npm run start &
+          # wait a bit for the server to start
+          sleep 25
+
+      # I) Check that the storefront is actually up
       - name: Verify EverShop storefront is up
         run: curl -LI http://localhost:3000
 
+      # J) Install testRigor CLI
+      - name: Install testRigor CLI
+        run: |
+          npm install -g testrigor-cli
+          testrigor --version
+
+      # K) Run your testRigor suite against EverShop admin
       - name: Run testRigor suite via CLI
         env:
           TESTRIGOR_CICD_TOKEN: ${{ secrets.TESTRIGOR_CICD_TOKEN }}
           TESTRIGOR_SUITE_ID: ${{ vars.TESTRIGOR_SUITE_ID }}
-        run: testrigor test-suite run "$TESTRIGOR_SUITE_ID" --token "$TESTRIGOR_CICD_TOKEN" --url "http://localhost:3000/admin"
-
+        run: |
+          testrigor test-suite run "$TESTRIGOR_SUITE_ID" \
+            --token "$TESTRIGOR_CICD_TOKEN" \
+            --url "http://localhost:3000/admin"
