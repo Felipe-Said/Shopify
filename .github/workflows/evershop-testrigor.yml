@@ -44,7 +44,7 @@ jobs:
 
       - name: Install EverShop CLI
         run: |
-          npm install -g @evershop/cli
+          npm install -g evershop
           evershop --version
 
       - name: Wait for database
