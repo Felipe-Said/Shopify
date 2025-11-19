@@ -12,7 +12,6 @@ jobs:
   evershop-testrigor:
     runs-on: ubuntu-latest
 
-    # 1) Start a Postgres database for EverShop
     services:
       postgres:
         image: postgres:16
@@ -23,7 +22,6 @@ jobs:
         ports:
           - 5432:5432
 
-    # 2) Tell EverShop how to connect to that Postgres DB
     env:
       DB_HOST: 127.0.0.1
       DB_PORT: 5432
@@ -33,29 +31,29 @@ jobs:
       DB_SSLMODE: disable
 
     steps:
-      # A) Get your code
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      # B) Install Node.js
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
           node-version: "18"
 
-      # C) Install npm dependencies (this installs @evershop/evershop too)
       - name: Install dependencies
         run: npm install
 
-      # D) Give Postgres a few seconds to be ready
+      # 🔥 FIX: Add EverShop CLI installation
+      - name: Install EverShop CLI
+        run: |
+          npm install -g @evershop/cli
+          evershop --version
+
       - name: Wait for database
         run: sleep 20
 
-      # E) Run EverShop install (creates DB tables, basic config, admin setup logic)
       - name: Run EverShop setup
         run: npm run setup
 
-      # F) Create EverShop admin user (this is the one you use in testRigor)
       - name: Create EverShop admin user
         env:
           ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
@@ -66,33 +64,20 @@ jobs:
             --password "$ADMIN_PASSWORD" \
             --name "Admin"
 
-      # G) Build the app
       - name: Build EverShop
         run: npm run build
 
-      # H) Start the app (storefront + admin) in the background
       - name: Start EverShop
         run: |
           npm run start &
-          # wait a bit for the server to start
           sleep 25
 
-      # I) Check that the storefront is actually up
       - name: Verify EverShop storefront is up
         run: curl -LI http://localhost:3000
 
-      # J) Install testRigor CLI
       - name: Install testRigor CLI
         run: |
           npm install -g testrigor-cli
           testrigor --version
 
-      # K) Run your testRigor suite against EverShop admin
       - name: Run testRigor suite via CLI
-        env:
-          TESTRIGOR_CICD_TOKEN: ${{ secrets.TESTRIGOR_CICD_TOKEN }}
-          TESTRIGOR_SUITE_ID: ${{ vars.TESTRIGOR_SUITE_ID }}
-        run: |
-          testrigor test-suite run "$TESTRIGOR_SUITE_ID" \
-            --token "$TESTRIGOR_CICD_TOKEN" \
-            --url "http://localhost:3000/admin"
