@@ -98,4 +98,6 @@ jobs:
         run: |
           testrigor test-suite run "$TESTRIGOR_SUITE_ID" \
             --token "$TESTRIGOR_CICD_TOKEN" \
+            --localhost \
             --url "http://localhost:3000/admin"
+
