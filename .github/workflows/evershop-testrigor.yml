@@ -84,7 +84,7 @@ jobs:
           echo "EverShop storefront did not start in time ❌"
           exit 1
 
-      # 7) Install testRigor CLI (like you did locally)
+      # 7) Install testRigor CLI 
       - name: Install testRigor CLI
         run: |
           npm install -g testrigor-cli
@@ -99,5 +99,7 @@ jobs:
           testrigor test-suite run "$TESTRIGOR_SUITE_ID" \
             --token "$TESTRIGOR_CICD_TOKEN" \
             --localhost \
+            --test-cases-path packages/evershop/src/Tests/e2e-testcases/testcases/**/*.txt \
+            --rules-path packages/evershop/src/Tests/e2e-testcases/reusable-rules/**/*.txt \
             --url "http://localhost:3000/admin"
 
