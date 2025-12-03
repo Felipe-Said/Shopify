@@ -99,5 +99,7 @@ jobs:
           testrigor test-suite run "$TESTRIGOR_SUITE_ID" \
             --token "$TESTRIGOR_CICD_TOKEN" \
             --localhost \
+            --test-cases-path packages/evershop/src/Tests/e2e-testcases/testcases/**/*.txt \
+            --rules-path packages/evershop/src/Tests/e2e-testcases/reusable-rules/**/*.txt \
             --url "http://localhost:3000/admin"
 
