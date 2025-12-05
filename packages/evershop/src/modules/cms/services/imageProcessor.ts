@@ -88,9 +88,21 @@ export const imageProcessor = async (
         const possiblePaths = [
           `media/${assetPath}`,
           `public/${assetPath}`
-          // For themes, we need to check each theme's public directory
-          // This is more complex and would require listing themes
         ];
+
+        // Add theme public directories to possible paths
+        try {
+          const themesDir = path.join(CONSTANTS.ROOTPATH, 'themes');
+          const themes = await fs.readdir(themesDir, { withFileTypes: true });
+
+          for (const theme of themes) {
+            if (theme.isDirectory()) {
+              possiblePaths.push(`themes/${theme.name}/public/${assetPath}`);
+            }
+          }
+        } catch (e) {
+          // Ignore if themes directory doesn't exist or error reading it
+        }
 
         let fileExists = false;
         for (const possiblePath of possiblePaths) {
