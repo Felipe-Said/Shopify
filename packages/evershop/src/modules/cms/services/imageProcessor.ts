@@ -3,6 +3,7 @@ import path from 'path';
 import sharp from 'sharp';
 import { CONSTANTS } from '../../../lib/helpers.js';
 import { debug } from '../../../lib/log/logger.js';
+import { getEnabledTheme } from '../../../lib/util/getEnabledTheme.js';
 
 const hasTransparency = async (imageBuffer: Buffer): Promise<boolean> => {
   try {
@@ -75,6 +76,9 @@ export const imageProcessor = async (
   const isExternalUrl = src.startsWith('http://') || src.startsWith('https://');
 
   if (!isExternalUrl) {
+    // Get the currently enabled theme (if any)
+    const enabledTheme = getEnabledTheme();
+
     // Special case: Handle assets path format like "/assets/media/image.png" or "/assets/image.png"
     if (src.startsWith('/assets/')) {
       // Extract the filename after '/assets/'
@@ -90,18 +94,9 @@ export const imageProcessor = async (
           `public/${assetPath}`
         ];
 
-        // Add theme public directories to possible paths
-        try {
-          const themesDir = path.join(CONSTANTS.ROOTPATH, 'themes');
-          const themes = await fs.readdir(themesDir, { withFileTypes: true });
-
-          for (const theme of themes) {
-            if (theme.isDirectory()) {
-              possiblePaths.push(`themes/${theme.name}/public/${assetPath}`);
-            }
-          }
-        } catch (e) {
-          // Ignore if themes directory doesn't exist or error reading it
+        // Add currently enabled theme public directory (if any) to possible paths
+        if (enabledTheme) {
+          possiblePaths.push(`themes/${enabledTheme.name}/public/${assetPath}`);
         }
 
         let fileExists = false;
@@ -145,16 +140,17 @@ export const imageProcessor = async (
     }
 
     // Only allow specific directories from project root
-    const allowedPaths = ['media/', 'public/', 'themes/'];
+    const allowedPaths = ['media/', 'public/'];
 
-    const isAllowedPath = allowedPaths.some((allowedPath) => {
-      if (allowedPath === 'themes/') {
-        // Special handling for themes: must be themes/<themename>/public/
-        const themePattern = /^themes\/[^\/]+\/public\//;
-        return themePattern.test(normalizedPath);
-      }
-      return normalizedPath.startsWith(allowedPath);
-    });
+    // Only allow the currently enabled theme's public directory (if any),
+    // not all existing theme folders.
+    if (enabledTheme) {
+      allowedPaths.push(`themes/${enabledTheme.name}/public/`);
+    }
+
+    const isAllowedPath = allowedPaths.some((allowedPath) =>
+      normalizedPath.startsWith(allowedPath)
+    );
 
     if (!isAllowedPath) {
       throw new Error(
