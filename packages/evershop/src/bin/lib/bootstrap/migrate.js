@@ -15,14 +15,20 @@ import { createMigrationTable } from '../../install/createMigrationTable.js';
 
 async function getCurrentInstalledVersion(module, connection = null) {
   /** Check for current installed version */
-  const check = await select()
-    .from('migration')
-    .where('module', '=', module)
-    .load(connection || pool);
-  if (!check) {
+  const check = (await connection)
+    ? await connection.query(
+        'SELECT version FROM migration WHERE module = $1 ORDER BY version DESC LIMIT 1',
+        [module]
+      )
+    : await pool.query(
+        'SELECT version FROM migration WHERE module = $1 ORDER BY version DESC LIMIT 1',
+        [module]
+      );
+
+  if (check.rows.length === 0) {
     return '0.0.1';
   } else {
-    return check.version;
+    return check.rows[0].version;
   }
 }
 
@@ -66,7 +72,7 @@ async function migrateModule(module, connection = null) {
       );
       await versionModule.default(migrationConnection);
 
-      await insertOnUpdate('migration', ['module'])
+      await insertOnUpdate('migration', ['module', 'version'])
         .given({
           module: module.name,
           version

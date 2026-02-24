@@ -61,7 +61,7 @@ const ProductSelector: React.FC<{
   ) => Promise<void> | void;
   selectedProducts: Array<AtLeastOne<ProductIdentifier>>;
 }> = ({ onSelect, onUnSelect, selectedProducts }) => {
-  const limit = 10;
+  const limit = 100;
   const [internalSelectedProducts, setSelectedProducts] = React.useState<
     Array<AtLeastOne<ProductIdentifier>>
   >(selectedProducts || []);

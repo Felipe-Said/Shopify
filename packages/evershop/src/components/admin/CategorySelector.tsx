@@ -69,7 +69,7 @@ const CategorySelector: React.FC<{
   const [internalSelectedCategories, setInternalSelectedCategories] =
     React.useState<AtLeastOne<CategoryIdentifier>[]>(selectedCategories || []);
   const [loading, setLoading] = React.useState<boolean>(false);
-  const limit = 10;
+  const limit = 100;
   const [inputValue, setInputValue] = React.useState<string>('');
   const [page, setPage] = React.useState(1);
 
