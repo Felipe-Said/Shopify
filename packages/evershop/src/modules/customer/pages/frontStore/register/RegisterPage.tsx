@@ -11,8 +11,8 @@ interface RegisterPageProps {
 export default function RegisterPage({ homeUrl, loginUrl }: RegisterPageProps) {
   return (
     <div className="flex justify-center items-center flex-col gap-3">
-      <Card className="flex justify-center items-center max-w-max md:max-w-[80%]">
-        <CardContent>
+      <Card className="flex justify-center items-center w-full max-w-md md:max-w-[80%]">
+        <CardContent className="w-full">
           <CustomerRegistrationForm
             title={_('Create an account')}
             subtitle={_('Join us for exclusive offers and order tracking')}
@@ -20,7 +20,7 @@ export default function RegisterPage({ homeUrl, loginUrl }: RegisterPageProps) {
             onError={(error) => {
               toast.error(error);
             }}
-            className="w-120"
+            className="w-full"
           />
         </CardContent>
       </Card>

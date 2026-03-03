@@ -17,8 +17,8 @@ export default function LoginPage({
 }: LoginPageProps) {
   return (
     <div className="login__page flex flex-col justify-center items-center">
-      <Card className="flex justify-center items-center max-w-max md:max-w-[80%]">
-        <CardContent>
+      <Card className="flex justify-center items-center w-full max-w-md md:max-w-[80%]">
+        <CardContent className="w-full">
           <CustomerLoginForm
             title={_('Welcome Back!')}
             subtitle={_('Please sign in to your account')}
@@ -26,7 +26,7 @@ export default function LoginPage({
             onError={(error) => {
               toast.error(error.message);
             }}
-            className="w-120"
+            className="w-full"
           />
         </CardContent>
       </Card>
