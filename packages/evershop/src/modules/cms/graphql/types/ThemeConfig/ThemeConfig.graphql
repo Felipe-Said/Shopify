@@ -67,11 +67,22 @@ type Logo {
 """
 Represents a nav head tag.
 """
+"""
+Represents a noscript html tag.
+"""
+type Noscript {
+  html: String
+}
+
+"""
+Represents a nav head tag.
+"""
 type HeadTag {
   links: [Link]
   metas: [Meta]
   scripts: [Script]
   base: Base
+  noscripts: [Noscript]
 }
 
 """
