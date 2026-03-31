@@ -1,0 +1,50 @@
+name: 🧪 Test Self-Hosted Runner
+
+on:
+  push:
+    branches:
+      - e2e-integrate
+jobs:
+  package:
+    runs-on: self-hosted
+    container:
+      image: node:20-bullseye
+    steps:
+      - name: 📦 Checkout source code
+        uses: actions/checkout@v4
+
+      - name: 🧩 Prepare source
+        run: |
+          npm install
+          cd packages/postgres-query-builder
+          npm run compile
+          cd ../evershop
+          npm pack
+          VERSION=$(node -p "require('./package.json').version")
+          FILE_NAME="evershop-evershop-$VERSION.tgz"
+          echo "FILE_NAME=$FILE_NAME" >> $GITHUB_ENV
+          echo "✅ Built package: $FILE_NAME"
+
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SELF_HOSTED_RUNNER_102_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+
+
+          echo "Uploading $FILE_NAME to VPS..."
+          scp -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no "$FILE_NAME" \
+          ${{ secrets.SELF_HOSTED_RUNNER_102_USER }}@${{ secrets.SELF_HOSTED_RUNNER_102_VPS_IP }}:/home/github-runner/e2e-ecommerce-evershop/source
+
+      - name: 🚀 Deploy to VPS
+        run: |
+          FILE_NAME=${{ env.FILE_NAME }}
+          ssh -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no \
+            ${{ secrets.SELF_HOSTED_RUNNER_102_USER }}@${{ secrets.SELF_HOSTED_RUNNER_102_VPS_IP }} << EOF
+              cd /home/github-runner/e2e-ecommerce-evershop/source
+              rm -rf ./node_modules package-lock.json
+              npm cache clean --force
+              npm uninstall @evershop/evershop || true
+              npm install "file:./$FILE_NAME"
+              npm install
+              npm run build
+              pm2 restart e2e-evershop
+          EOF
