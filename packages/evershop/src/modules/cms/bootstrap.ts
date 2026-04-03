@@ -115,6 +115,18 @@ export default () => {
                     },
                     required: ['href']
                   }
+                },
+                noscripts: {
+                  type: 'array',
+                  items: {
+                    type: 'object',
+                    properties: {
+                      html: {
+                        type: 'string'
+                      }
+                    },
+                    required: ['html']
+                  }
                 }
               }
             }
@@ -145,7 +157,8 @@ export default () => {
       links: [],
       metas: [],
       scripts: [],
-      bases: []
+      bases: [],
+      noscripts: []
     },
     copyRight: `© 2022 Evershop. All Rights Reserved.`
   };

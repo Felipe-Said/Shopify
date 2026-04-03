@@ -35,13 +35,14 @@ interface HeadTagsProps {
         href: string;
         target: '_blank' | '_self' | '_parent' | '_top';
       };
+      noscripts?: Array<{ html: string }>;
     };
   };
 }
 export default function HeadTags({
   pageInfo: { title, description, keywords, canonicalUrl, ogInfo, favicon },
   themeConfig: {
-    headTags: { metas, links, scripts, base }
+    headTags: { metas, links, scripts, base, noscripts }
   }
 }: HeadTagsProps) {
   React.useEffect(() => {
@@ -77,6 +78,13 @@ export default function HeadTags({
       )}
       {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
       {base && <base {...base} />}
+      {noscripts &&
+        noscripts.map((noscript, index) => (
+          <noscript
+            key={index}
+            dangerouslySetInnerHTML={{ __html: noscript.html }}
+          />
+        ))}
       <Og
         type={ogInfo.type}
         title={title}
@@ -160,6 +168,9 @@ export const query = `
         base {
           href
           target
+        }
+        noscripts {
+          html
         }
       }
     }
