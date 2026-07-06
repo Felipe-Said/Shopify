@@ -9,6 +9,7 @@ import { getConfig } from '../util/getConfig.js';
 
 // Use env for the database connection, maintain the backward compatibility
 const connectionSetting: PoolConfig = {
+  connectionString: process.env.DATABASE_URL,
   host: process.env.DB_HOST,
   port: process.env.DB_PORT as unknown as number,
   user: process.env.DB_USER,
@@ -17,8 +18,24 @@ const connectionSetting: PoolConfig = {
   max: 20
 };
 
+function getSslMode() {
+  if (process.env.DB_SSLMODE) {
+    return process.env.DB_SSLMODE;
+  }
+
+  if (process.env.DATABASE_URL) {
+    try {
+      return new URL(process.env.DATABASE_URL).searchParams.get('sslmode');
+    } catch {
+      return undefined;
+    }
+  }
+
+  return undefined;
+}
+
 // Support SSL
-const sslMode = process.env.DB_SSLMODE;
+const sslMode = getSslMode();
 switch (sslMode) {
   case 'disable': {
     connectionSetting.ssl = false;

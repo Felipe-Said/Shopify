@@ -1,0 +1,10 @@
+{
+  "shop": {
+    "language": "en",
+    "currency": "USD",
+    "timezone": "UTC"
+  },
+  "system": {
+    "extensions": []
+  }
+}

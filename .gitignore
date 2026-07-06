@@ -25,6 +25,9 @@ coverage
 cypress
 .turbo
 /config
+!/config/
+!/config/default.json
+!/config/production.json
 /packages/evershop/config
 .prettierignore
 .prettierrc
