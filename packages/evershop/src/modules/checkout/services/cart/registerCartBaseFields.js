@@ -1,9 +1,9 @@
 import { select } from '@evershop/postgres-query-builder';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
-import { normalizePort } from '../../../../bin/lib/normalizePort.js';
 import { pool } from '../../../../lib/postgres/connection.js';
 import { buildUrl } from '../../../../lib/router/buildUrl.js';
+import { getBaseUrl } from '../../../../lib/util/getBaseUrl.js';
 import { getConfig } from '../../../../lib/util/getConfig.js';
 import { validateAddress } from '../../../../modules/customer/services/index.js';
 import { getSetting } from '../../../../modules/setting/services/setting.js';
@@ -405,8 +405,7 @@ export function registerCartBaseFields(fields) {
               // Call the API of the shipping method to calculate the shipping fee. This is an internal API
               // use axios to call the API
               // Ignore http status error
-              const port = normalizePort();
-              let api = `http://localhost:${port}`;
+              let api = getBaseUrl();
               try {
                 api += buildUrl(shippingMethod.calculate_api, {
                   cart_id: this.getData('uuid'),

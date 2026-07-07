@@ -1,8 +1,8 @@
 import { select } from '@evershop/postgres-query-builder';
 import axios from 'axios';
-import { normalizePort } from '../../../bin/lib/normalizePort.js';
 import { pool } from '../../../lib/postgres/connection.js';
 import { buildUrl } from '../../../lib/router/buildUrl.js';
+import { getBaseUrl } from '../../../lib/util/getBaseUrl.js';
 import { toPrice } from './toPrice.js';
 
 export const getAvailableShippingMethods = async (
@@ -97,8 +97,7 @@ export const getAvailableShippingMethods = async (
     methods.map(async (method) => {
       if (method.calculate_api) {
         // This API is internal. It must be public
-        const port = normalizePort();
-        let api = `http://localhost:${port}`;
+        let api = getBaseUrl();
         try {
           api += buildUrl(method.calculate_api, {
             cart_id: cart.uuid,

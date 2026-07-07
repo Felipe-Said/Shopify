@@ -1,14 +1,13 @@
 import boxen from 'boxen';
 import kleur from 'kleur';
-import { normalizePort } from './normalizePort.js';
+import { getBaseUrl } from '../../lib/util/getBaseUrl.js';
 
-const port = normalizePort();
 /**
  * Event listener for HTTP server "listening" event.
  */
 export function onListening() {
   const message = boxen(
-    `Your website is running at "http://localhost:${port}"`,
+    `Your website is running at "${getBaseUrl()}"`,
     {
       title: 'EverShop',
       titleAlignment: 'center',

@@ -39,6 +39,7 @@ Set either `DATABASE_URL`:
 DATABASE_URL=postgresql://postgres.<project-ref>:<password>@aws-0-<region>.pooler.supabase.com:6543/postgres?sslmode=require
 DB_SSLMODE=require
 NODE_ENV=production
+SHOP_HOME_URL=https://your-render-service.onrender.com
 ```
 
 Or set the split variables:
@@ -51,6 +52,7 @@ DB_PASSWORD=<your-supabase-db-password>
 DB_NAME=postgres
 DB_SSLMODE=require
 NODE_ENV=production
+SHOP_HOME_URL=https://your-render-service.onrender.com
 ```
 
 Do not use `db.<project-ref>.supabase.co` on Render if it fails with
