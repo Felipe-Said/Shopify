@@ -1,13 +1,13 @@
 import { select } from '@evershop/postgres-query-builder';
 import { pool } from '../../../../../lib/postgres/connection.js';
-import { EvershopRequest } from '../../../../../types/request.js';
-import { EvershopResponse } from '../../../../../types/response.js';
+import { CartifyRequest } from '../../../../../types/request.js';
+import { CartifyResponse } from '../../../../../types/response.js';
 import { setPageMetaInfo } from '../../../../cms/services/pageMetaInfo.js';
 import { setContextValue } from '../../../../graphql/services/contextHelper.js';
 
 export default async (
-  request: EvershopRequest,
-  response: EvershopResponse,
+  request: CartifyRequest,
+  response: CartifyResponse,
   next
 ) => {
   try {

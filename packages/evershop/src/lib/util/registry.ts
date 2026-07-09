@@ -56,7 +56,7 @@ class Registry {
       if (value === undefined) {
         // eslint-disable-next-line no-console
         console.log(
-          `\x1b[33m⚠️ The processor for the value '${name}' is not returning anything. This may cause unexpected behavior.\x1b[0m`
+          `\x1b[33mâš ï¸ The processor for the value '${name}' is not returning anything. This may cause unexpected behavior.\x1b[0m`
         );
       }
       // Validate the value if the validator is provided and it is a function
@@ -128,7 +128,7 @@ class Registry {
       if (value === undefined) {
         // eslint-disable-next-line no-console
         console.log(
-          `\x1b[33m⚠️ The processor for the value '${name}' is not returning anything. This may cause unexpected behavior.\x1b[0m`
+          `\x1b[33mâš ï¸ The processor for the value '${name}' is not returning anything. This may cause unexpected behavior.\x1b[0m`
         );
       }
       // Validate the value if the validator is provided and it is a function

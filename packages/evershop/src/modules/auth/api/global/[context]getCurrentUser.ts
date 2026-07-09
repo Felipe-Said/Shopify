@@ -3,7 +3,7 @@ import { select } from '@evershop/postgres-query-builder';
 import sessionStorage from 'connect-pg-simple';
 import session from 'express-session';
 import { pool } from '../../../../lib/postgres/connection.js';
-import { EvershopRequest } from '../../../../types/request.js';
+import { CartifyRequest } from '../../../../types/request.js';
 import { setContextValue } from '../../../graphql/services/contextHelper.js';
 import { getAdminSessionCookieName } from '../../services/getAdminSessionCookieName.js';
 
@@ -15,7 +15,7 @@ import { getAdminSessionCookieName } from '../../services/getAdminSessionCookieN
  * @param {*} next
  * @returns
  */
-export default async (request: EvershopRequest, response, next) => {
+export default async (request: CartifyRequest, response, next) => {
   // Check if the user is authenticated, if yes we assume previous authentication middleware has set the user in the context
   let currentAdminUser = request.getCurrentUser();
   if (!currentAdminUser) {

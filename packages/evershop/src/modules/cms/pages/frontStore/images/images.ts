@@ -1,10 +1,10 @@
-import { EvershopRequest } from '../../../../../types/request.js';
-import { EvershopResponse } from '../../../../../types/response.js';
+import { CartifyRequest } from '../../../../../types/request.js';
+import { CartifyResponse } from '../../../../../types/response.js';
 import { imageProcessor } from '../../../services/imageProcessor.js';
 
 export default async (
-  request: EvershopRequest,
-  response: EvershopResponse,
+  request: CartifyRequest,
+  response: CartifyResponse,
   next
 ) => {
   const src = typeof request.query.src === 'string' ? request.query.src : '';

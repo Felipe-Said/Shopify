@@ -5,8 +5,8 @@ import jsesc from 'jsesc';
 import { getNotifications } from '../../modules/base/services/notifications.js';
 import { getPageMetaInfo } from '../../modules/cms/services/pageMetaInfo.js';
 import { Config } from '../../types/appContext.js';
-import { EvershopRequest } from '../../types/request.js';
-import { EvershopResponse } from '../../types/response.js';
+import { CartifyRequest } from '../../types/request.js';
+import { CartifyResponse } from '../../types/response.js';
 import { error } from '../log/logger.js';
 import { get } from '../util/get.js';
 import { getConfig } from '../util/getConfig.js';
@@ -24,8 +24,8 @@ function normalizeAssets(assets) {
 }
 
 function buildContextData(
-  request: EvershopRequest,
-  response: EvershopResponse
+  request: CartifyRequest,
+  response: CartifyResponse
 ) {
   const pageMeta = getPageMetaInfo(request);
   const appConfig = getValueSync<Config>(
@@ -57,8 +57,8 @@ function buildContextData(
 }
 
 function renderDevelopment(
-  request: EvershopRequest,
-  response: EvershopResponse
+  request: CartifyRequest,
+  response: CartifyResponse
 ) {
   const route = request.currentRoute;
   const classes = route.isAdmin

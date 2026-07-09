@@ -1,12 +1,12 @@
 import { getDelegate } from '../../../../lib/middleware/delegate.js';
 import { buildUrl } from '../../../../lib/router/buildUrl.js';
 import { OK } from '../../../../lib/util/httpStatus.js';
-import { EvershopRequest } from '../../../../types/request.js';
-import { EvershopResponse } from '../../../../types/response.js';
+import { CartifyRequest } from '../../../../types/request.js';
+import { CartifyResponse } from '../../../../types/response.js';
 
 export default async (
-  request: EvershopRequest,
-  response: EvershopResponse,
+  request: CartifyRequest,
+  response: CartifyResponse,
   next
 ) => {
   const page = await getDelegate<Record<string, any>>('updatePage', request);

@@ -7,12 +7,12 @@ import { getConfig } from '../../../../../lib/util/getConfig.js';
 import { addNotification } from '../../../../../modules/base/services/notifications.js';
 import { updatePaymentStatus } from '../../../../../modules/oms/services/updatePaymentStatus.js';
 import { getSetting } from '../../../../../modules/setting/services/setting.js';
-import { EvershopRequest } from '../../../../../types/request.js';
-import { EvershopResponse } from '../../../../../types/response.js';
+import { CartifyRequest } from '../../../../../types/request.js';
+import { CartifyResponse } from '../../../../../types/response.js';
 
 export default async (
-  request: EvershopRequest,
-  response: EvershopResponse,
+  request: CartifyRequest,
+  response: CartifyResponse,
   next
 ) => {
   try {

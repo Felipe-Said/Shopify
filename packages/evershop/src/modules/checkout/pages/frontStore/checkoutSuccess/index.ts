@@ -2,11 +2,11 @@ import { select } from '@evershop/postgres-query-builder';
 import { translate } from '../../../../../lib/locale/translate/translate.js';
 import { pool } from '../../../../../lib/postgres/connection.js';
 import { buildUrl } from '../../../../../lib/router/buildUrl.js';
-import { EvershopRequest } from '../../../../../types/request.js';
+import { CartifyRequest } from '../../../../../types/request.js';
 import { setPageMetaInfo } from '../../../../cms/services/pageMetaInfo.js';
 import { setContextValue } from '../../../../graphql/services/contextHelper.js';
 
-export default async (request: EvershopRequest, response, next) => {
+export default async (request: CartifyRequest, response, next) => {
   const { orderId } = request.params;
   const order = await select()
     .from('order')

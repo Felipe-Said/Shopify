@@ -10,16 +10,16 @@ import {
   OK
 } from '../../../../lib/util/httpStatus.js';
 import { getValueSync } from '../../../../lib/util/registry.js';
-import { EvershopRequest } from '../../../../types/request.js';
-import { EvershopResponse } from '../../../../types/response.js';
+import { CartifyRequest } from '../../../../types/request.js';
+import { CartifyResponse } from '../../../../types/response.js';
 import { toPrice } from '../../../checkout/services/toPrice.js';
 import { getContextValue } from '../../../graphql/services/contextHelper.js';
 import { getSetting } from '../../../setting/services/setting.js';
 import { createAxiosInstance } from '../../services/requester.js';
 
 export default async (
-  request: EvershopRequest,
-  response: EvershopResponse,
+  request: CartifyRequest,
+  response: CartifyResponse,
   next
 ) => {
   try {
@@ -116,7 +116,7 @@ export default async (
           )}${buildUrl('paypalReturn', { order_id })}`,
           shipping_preference: 'SET_PROVIDED_ADDRESS',
           user_action: 'PAY_NOW',
-          brand_name: await getSetting('storeName', 'Evershop')
+          brand_name: await getSetting('storeName', 'Cartify')
         }
       } as CreateOrderRequestBody;
       const shippingAddress = await select()

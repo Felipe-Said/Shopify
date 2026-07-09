@@ -61,7 +61,7 @@ export const countries: Country[] = [
   { code: 'CU', name: 'Cuba' },
   { code: 'CY', name: 'Cyprus' },
   { code: 'CZ', name: 'Czech Republic' },
-  { code: 'CI', name: 'Côte d’Ivoire' },
+  { code: 'CI', name: 'CÃ´te dâ€™Ivoire' },
   { code: 'DK', name: 'Denmark' },
   { code: 'DJ', name: 'Djibouti' },
   { code: 'DM', name: 'Dominica' },
@@ -184,8 +184,8 @@ export const countries: Country[] = [
   { code: 'RO', name: 'Romania' },
   { code: 'RU', name: 'Russia' },
   { code: 'RW', name: 'Rwanda' },
-  { code: 'RE', name: 'Réunion' },
-  { code: 'BL', name: 'Saint Barthélemy' },
+  { code: 'RE', name: 'RÃ©union' },
+  { code: 'BL', name: 'Saint BarthÃ©lemy' },
   { code: 'SH', name: 'Saint Helena' },
   { code: 'KN', name: 'Saint Kitts and Nevis' },
   { code: 'LC', name: 'Saint Lucia' },
@@ -216,7 +216,7 @@ export const countries: Country[] = [
   { code: 'SE', name: 'Sweden' },
   { code: 'CH', name: 'Switzerland' },
   { code: 'SY', name: 'Syria' },
-  { code: 'ST', name: 'São Tomé and Príncipe' },
+  { code: 'ST', name: 'SÃ£o TomÃ© and PrÃ­ncipe' },
   { code: 'TW', name: 'Taiwan' },
   { code: 'TJ', name: 'Tajikistan' },
   { code: 'TZ', name: 'Tanzania' },
@@ -249,5 +249,5 @@ export const countries: Country[] = [
   { code: 'YE', name: 'Yemen' },
   { code: 'ZM', name: 'Zambia' },
   { code: 'ZW', name: 'Zimbabwe' },
-  { code: 'AX', name: 'Åland Islands' }
+  { code: 'AX', name: 'Ã…land Islands' }
 ];

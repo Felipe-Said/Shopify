@@ -44,7 +44,7 @@ export async function createVariantGroups(
 
       variantGroupIds.set(groupName, result.insertId);
       success(
-        `✓ Created variant group: ${groupName} (ID: ${result.insertId}, UUID: ${uuid})`
+        `âœ“ Created variant group: ${groupName} (ID: ${result.insertId}, UUID: ${uuid})`
       );
     } catch (e: any) {
       error(`Failed to create variant group ${groupName}: ${e.message}`);
@@ -85,11 +85,11 @@ export async function resolveAttributeOptions(
         attr.value = option.attribute_option_id.toString();
         validAttributes.push(attr);
         info(
-          `  → Resolved ${attr.attribute_code}: "${option.option_text}" → ID ${option.attribute_option_id}`
+          `  â†’ Resolved ${attr.attribute_code}: "${option.option_text}" â†’ ID ${option.attribute_option_id}`
         );
       } else {
         error(
-          `  ✗ Option "${attr.value}" not found for attribute "${attr.attribute_code}" - skipping this attribute`
+          `  âœ— Option "${attr.value}" not found for attribute "${attr.attribute_code}" - skipping this attribute`
         );
         // Don't add this attribute to validAttributes
       }

@@ -221,7 +221,7 @@ function TableContent<T = any>({
                     <span>{col.header.label}</span>
                     {col.sortable && currentSort?.key === col.key && (
                       <span className="text-blue-500">
-                        {currentSort.direction === 'asc' ? '↑' : '↓'}
+                        {currentSort.direction === 'asc' ? 'â†‘' : 'â†“'}
                       </span>
                     )}
                   </TableHead>

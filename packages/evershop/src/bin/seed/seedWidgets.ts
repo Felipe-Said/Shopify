@@ -47,7 +47,7 @@ async function downloadSlideshowImages(
     for (const slide of settings.slides as SlideData[]) {
       if (slide.image && slide.image.startsWith('http')) {
         try {
-          info(`  → Downloading slide image: ${slide.image}`);
+          info(`  â†’ Downloading slide image: ${slide.image}`);
 
           // Get filename from URL
           const filename = getFilenameFromUrl(slide.image);
@@ -80,7 +80,7 @@ async function downloadSlideshowImages(
             image: mediaUrl
           });
         } catch (err) {
-          error(`  ✗ Failed to download slide image: ${err}`);
+          error(`  âœ— Failed to download slide image: ${err}`);
           // Keep original URL on failure
           updatedSlides.push(slide);
         }
@@ -124,7 +124,7 @@ export async function seedWidgets(): Promise<void> {
         .load(connection, false);
 
       if (existing) {
-        info(`  ⊘ Widget "${widgetData.name}" already exists, skipping...`);
+        info(`  âŠ˜ Widget "${widgetData.name}" already exists, skipping...`);
         skipped++;
         continue;
       }
@@ -132,7 +132,7 @@ export async function seedWidgets(): Promise<void> {
       // Process settings - download slideshow images if needed
       let processedSettings = widgetData.settings;
       if (widgetData.type === 'simple_slider') {
-        info(`  → Processing slideshow images for: ${widgetData.name}`);
+        info(`  â†’ Processing slideshow images for: ${widgetData.name}`);
         processedSettings = await downloadSlideshowImages(widgetData.settings);
       }
 
@@ -149,12 +149,12 @@ export async function seedWidgets(): Promise<void> {
         })
         .execute(connection, false);
 
-      success(`  ✓ Created widget: ${widgetData.name}`);
+      success(`  âœ“ Created widget: ${widgetData.name}`);
       created++;
     }
 
     success(
-      `✓ Widget seeding complete: ${created} created, ${skipped} skipped`
+      `âœ“ Widget seeding complete: ${created} created, ${skipped} skipped`
     );
   } catch (e: any) {
     error(`Failed to seed widgets: ${e.message}`);

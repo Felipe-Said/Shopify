@@ -1,5 +1,5 @@
-import type { EvershopRequest } from '../../types/request.js';
+import type { CartifyRequest } from '../../types/request.js';
 
-export function isAjax(request: EvershopRequest) {
+export function isAjax(request: CartifyRequest) {
   return request.get('X-Requested-With') === 'XMLHttpRequest';
 }

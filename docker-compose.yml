@@ -34,7 +34,7 @@ services:
 
 networks:
   myevershop:
-    name: MyEverShop
+    name: MyCartify
     driver: bridge
 
 volumes:

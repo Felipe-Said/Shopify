@@ -1,7 +1,7 @@
 import { INVALID_PAYLOAD } from '../../../../lib/util/httpStatus.js';
 import { getValueSync } from '../../../../lib/util/registry.js';
-import { EvershopRequest } from '../../../../types/request.js';
-import { EvershopResponse } from '../../../../types/response.js';
+import { CartifyRequest } from '../../../../types/request.js';
+import { CartifyResponse } from '../../../../types/response.js';
 import { getAjv } from '../../services/getAjv.js';
 import markSkipEscape from '../../services/markSkipEscape.js';
 
@@ -24,7 +24,7 @@ ajv.addKeyword({
   }
 });
 
-export default (request: EvershopRequest, response: EvershopResponse, next) => {
+export default (request: CartifyRequest, response: CartifyResponse, next) => {
   // Get the current route
   const { currentRoute } = request;
   // Get the payload schema

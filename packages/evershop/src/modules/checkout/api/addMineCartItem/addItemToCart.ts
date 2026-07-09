@@ -7,13 +7,13 @@ import {
   INVALID_PAYLOAD,
   OK
 } from '../../../../lib/util/httpStatus.js';
-import { EvershopRequest } from '../../../../types/request.js';
+import { CartifyRequest } from '../../../../types/request.js';
 import { setContextValue } from '../../../graphql/services/contextHelper.js';
 import { createNewCart } from '../../services/createNewCart.js';
 import { getMyCart } from '../../services/getMyCart.js';
 import { saveCart } from '../../services/saveCart.js';
 
-export default async (request: EvershopRequest, response, next) => {
+export default async (request: CartifyRequest, response, next) => {
   try {
     const { sessionID, customer } = request.locals;
     let myCart = await getMyCart(sessionID || '', customer?.customer_id);

@@ -101,7 +101,7 @@ export async function seedProducts(
           productData.category_id = category.category_id;
         } else {
           warning(
-            `  ⚠️  Category "${categoryUrlKey}" not found, product will have no category`
+            `  âš ï¸  Category "${categoryUrlKey}" not found, product will have no category`
           );
         }
 
@@ -121,7 +121,7 @@ export async function seedProducts(
       if (variantGroup && variantGroupIds.has(variantGroup)) {
         productData.variant_group_id = variantGroupIds.get(variantGroup);
         info(
-          `  → Assigning to variant group: ${variantGroup} (ID: ${productData.variant_group_id})`
+          `  â†’ Assigning to variant group: ${variantGroup} (ID: ${productData.variant_group_id})`
         );
       }
 
@@ -133,7 +133,7 @@ export async function seedProducts(
       }
 
       const product = await createProduct(productData, {});
-      success(`✓ Created product: ${productData.name} (${productData.sku})`);
+      success(`âœ“ Created product: ${productData.name} (${productData.sku})`);
 
       // Process images
       if (images && Array.isArray(images)) {
@@ -155,7 +155,7 @@ export async function seedProducts(
                 product_id: product.insertId
               })
               .execute(pool);
-            info(`  → Assigned to collection: ${collectionCode}`);
+            info(`  â†’ Assigned to collection: ${collectionCode}`);
           }
         }
       }

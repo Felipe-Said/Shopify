@@ -8,12 +8,12 @@ import {
   generateRefreshToken,
   TOKEN_TYPES
 } from '../../../../lib/util/jwt.js';
-import { CurrentCustomer, EvershopRequest } from '../../../../types/request.js';
-import { EvershopResponse } from '../../../../types/response.js';
+import { CurrentCustomer, CartifyRequest } from '../../../../types/request.js';
+import { CartifyResponse } from '../../../../types/response.js';
 
 export default async (
-  request: EvershopRequest,
-  response: EvershopResponse,
+  request: CartifyRequest,
+  response: CartifyResponse,
   next
 ) => {
   try {

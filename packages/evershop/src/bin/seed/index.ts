@@ -131,7 +131,7 @@ async function seed() {
       console.log();
     }
 
-    success('✓ Demo data seeding completed successfully!');
+    success('âœ“ Demo data seeding completed successfully!');
     process.exit(0);
   } catch (e: any) {
     error(`Seeding failed: ${e.message}`);

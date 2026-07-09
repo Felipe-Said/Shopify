@@ -16,7 +16,7 @@ type EventProcessorDeps = {
 
 /**
  * Pure event processing logic. Accepts storage and subscribers as dependencies
- * so both can be replaced with mocks in tests — no real DB or filesystem needed.
+ * so both can be replaced with mocks in tests â€” no real DB or filesystem needed.
  */
 export function createEventProcessor({
   storage,
@@ -63,7 +63,7 @@ export function createEventProcessor({
         executeSubscribers(event).catch((e) => error(e));
       });
 
-      // Full batch — more rows likely waiting, schedule next claim immediately
+      // Full batch â€” more rows likely waiting, schedule next claim immediately
       if (events.length === BATCH_SIZE) {
         setImmediate(() => loadAndProcess().catch((e) => error(e)));
       }

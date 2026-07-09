@@ -3,14 +3,14 @@ import axios from 'axios';
 import { emit } from '../../../../../lib/event/emitter.js';
 import { pool } from '../../../../../lib/postgres/connection.js';
 import { buildUrl } from '../../../../../lib/router/buildUrl.js';
-import { EvershopRequest } from '../../../../../types/request.js';
-import { EvershopResponse } from '../../../../../types/response.js';
+import { CartifyRequest } from '../../../../../types/request.js';
+import { CartifyResponse } from '../../../../../types/response.js';
 import { getContextValue } from '../../../../graphql/services/contextHelper.js';
 import { getSetting } from '../../../../setting/services/setting.js';
 
 export default async (
-  request: EvershopRequest,
-  response: EvershopResponse,
+  request: CartifyRequest,
+  response: CartifyResponse,
   next
 ) => {
   // Get paypal token from query string

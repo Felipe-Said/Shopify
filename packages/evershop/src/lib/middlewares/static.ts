@@ -2,8 +2,8 @@ import { constants } from 'fs';
 import { access, stat } from 'fs/promises';
 import { join, normalize, extname } from 'path';
 import staticMiddleware from 'serve-static';
-import { EvershopRequest } from '../..//types/request.js';
-import { EvershopResponse } from '../../types/response.js';
+import { CartifyRequest } from '../..//types/request.js';
+import { CartifyResponse } from '../../types/response.js';
 import { CONSTANTS } from '../helpers.js';
 
 // Define allowed file extensions (whitelist)
@@ -90,8 +90,8 @@ const staticMiddlewareOptions = {
 };
 
 export default async (
-  request: EvershopRequest,
-  response: EvershopResponse,
+  request: CartifyRequest,
+  response: CartifyResponse,
   next
 ) => {
   let path;

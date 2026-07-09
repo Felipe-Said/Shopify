@@ -26,7 +26,7 @@ export class EventStorage {
 
   /**
    * Atomically claims up to `batchSize` pending events using a single CTE
-   * query — no BEGIN/COMMIT/ROLLBACK needed, eliminating the pg multi-query
+   * query â€” no BEGIN/COMMIT/ROLLBACK needed, eliminating the pg multi-query
    * deprecation warning entirely.
    */
   async claimBatch(batchSize: number): Promise<EventRow[]> {
@@ -60,7 +60,7 @@ export class EventStorage {
 
   /**
    * At startup: mark any events that were stuck as 'processing' during a
-   * prior crash as 'failed'. At-most-once delivery — subscribers are never
+   * prior crash as 'failed'. At-most-once delivery â€” subscribers are never
    * called twice. Returns the number of events marked failed.
    */
   async markStuckAsFailed(): Promise<number> {

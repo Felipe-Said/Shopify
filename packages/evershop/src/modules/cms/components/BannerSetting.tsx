@@ -244,7 +244,7 @@ export default function BannerSetting({
       {/* Display image dimensions as information */}
       <div className="mb-4">
         <div className="text-sm text-gray-500">
-          Image dimensions: {imageDimensions.width} × {imageDimensions.height}{' '}
+          Image dimensions: {imageDimensions.width} Ã— {imageDimensions.height}{' '}
           pixels
         </div>
       </div>

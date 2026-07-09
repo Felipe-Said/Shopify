@@ -3,10 +3,10 @@ import { setPageMetaInfo } from '../../../services/pageMetaInfo.js';
 
 export default async (request, response, next) => {
   setPageMetaInfo(request, {
-    title: await getSetting('storeName', 'EverShop'),
+    title: await getSetting('storeName', 'Cartify'),
     description: await getSetting(
       'storeDescription',
-      'The best eCommerce platform'
+      'Commerce platform for modern stores'
     )
   });
   next();

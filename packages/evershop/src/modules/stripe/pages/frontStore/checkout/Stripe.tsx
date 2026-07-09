@@ -267,7 +267,7 @@ export function CheckoutForm({
   );
 }
 
-// Make sure to call loadStripe outside of a component’s render to avoid
+// Make sure to call loadStripe outside of a componentâ€™s render to avoid
 // recreating the Stripe object on every render.
 // loadStripe is initialized with your real test publishable API key.
 let stripe;

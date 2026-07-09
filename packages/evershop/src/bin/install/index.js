@@ -37,8 +37,8 @@ async function install() {
   // eslint-disable-next-line no-console
   console.log(
     kleur.green(
-      boxen('Welcome to EverShop - The open-source e-commerce platform', {
-        title: 'EverShop',
+      boxen('Welcome to Cartify - The commerce platform', {
+        title: 'Cartify',
         titleAlignment: 'center',
         padding: 1,
         margin: 1,
@@ -65,8 +65,8 @@ async function install() {
     {
       type: 'input',
       name: 'databaseName',
-      message: 'Postgres Database Name (evershop)',
-      initial: process.env.DB_NAME || 'evershop',
+      message: 'Postgres Database Name (cartify)',
+      initial: process.env.DB_NAME || 'cartify',
       skip: !!process.env.DB_NAME
     },
     {
@@ -192,7 +192,7 @@ async function install() {
 
   /* Start installation */
   const messages = [];
-  messages.push(`\n\n${kleur.green('EverShop is being installed ☕ ☕ ☕')}`);
+  messages.push(`\n\n${kleur.green('Cartify is being installed')}`);
   messages.push('Creating .env file');
   const spinner = ora({
     text: kleur.green(messages.join('\n')),
@@ -213,7 +213,7 @@ DB_SSLMODE="${sslMode}"
   );
 
   messages.pop();
-  messages.push(kleur.green('✔ Created .env file'));
+  messages.push(kleur.green('âœ” Created .env file'));
   spinner.text = messages.join('\n');
 
   // Create `media` folder
@@ -249,7 +249,7 @@ DB_SSLMODE="${sslMode}"
     await insertOnUpdate('admin_user', ['email'])
       .given({
         status: 1,
-        email: adminUser?.email || 'admin@evershop.io',
+        email: adminUser?.email || 'admin@cartify.com',
         password: passwordHash,
         full_name: adminUser?.fullName || 'Admin'
       })
@@ -265,8 +265,8 @@ DB_SSLMODE="${sslMode}"
     process.exit(0);
   }
   messages.pop();
-  messages.push(kleur.green('✔ Setup database'));
-  messages.push(kleur.green('✔ Create admin user'));
+  messages.push(kleur.green('âœ” Setup database'));
+  messages.push(kleur.green('âœ” Create admin user'));
   spinner.succeed(messages.join('\n'));
 
   // eslint-disable-next-line no-console
@@ -276,7 +276,7 @@ DB_SSLMODE="${sslMode}"
         'Installation completed!. Run `npm run build` and `npm run start` to launch your store'
       ),
       {
-        title: 'EverShop',
+        title: 'Cartify',
         titleAlignment: 'center',
         padding: 1,
         margin: 1,

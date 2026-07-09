@@ -56,7 +56,7 @@ const promises = [];
 const total = controllers.length - 1;
 let completed = 0;
 
-spinner.text = `Start building ☕☕☕☕☕\n${Array(total).fill('▒').join('')}`;
+spinner.text = `Start building â˜•â˜•â˜•â˜•â˜•\n${Array(total).fill('â–’').join('')}`;
 
 if (existsSync(path.resolve(CONSTANTS.ROOTPATH, './.evershop/build'))) {
   rmdirSync(path.resolve(CONSTANTS.ROOTPATH, './.evershop/build'), {
@@ -242,9 +242,9 @@ webpackVendorPromise.then(async () => {
 
       await webpackPromise;
       completed += 1;
-      spinner.text = `Start building ☕☕☕☕☕\n${Array(completed)
-        .fill(green('█'))
-        .concat(total - completed > 0 ? Array(total - completed).fill('▒') : [])
+      spinner.text = `Start building â˜•â˜•â˜•â˜•â˜•\n${Array(completed)
+        .fill(green('â–ˆ'))
+        .concat(total - completed > 0 ? Array(total - completed).fill('â–’') : [])
         .join('')}`;
     };
     promises.push(buildFunc());
@@ -255,7 +255,7 @@ webpackVendorPromise.then(async () => {
       spinner.succeed(
         green('Building completed!!!\n') +
           boxen(green('Please run "npm run start" to start your website'), {
-            title: 'EverShop',
+            title: 'Cartify',
             titleAlignment: 'center',
             padding: 1,
             margin: 1,

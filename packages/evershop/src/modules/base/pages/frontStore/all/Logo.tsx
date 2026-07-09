@@ -12,7 +12,7 @@ interface LogoProps {
 }
 export default function Logo({
   themeConfig: {
-    logo: { src, alt = 'Evershop', width = 128, height = 128 }
+    logo: { src, alt = 'Cartify', width = 128, height = 128 }
   }
 }: LogoProps) {
   return (

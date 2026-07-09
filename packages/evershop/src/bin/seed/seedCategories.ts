@@ -31,7 +31,7 @@ export async function seedCategories(): Promise<void> {
       }
 
       await createCategory(categoryData, {});
-      success(`✓ Created category: ${categoryData.name}`);
+      success(`âœ“ Created category: ${categoryData.name}`);
     } catch (e: any) {
       error(`Failed to create category ${categoryData.name}: ${e.message}`);
     }

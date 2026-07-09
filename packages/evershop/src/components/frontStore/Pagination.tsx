@@ -517,7 +517,7 @@ export const InputPaginationRenderer: React.FC<{
           disabled={!hasPrev || isLoading}
           className="px-3 py-1 text-sm border border-gray-300 rounded hover:bg-gray-50 disabled:opacity-50"
         >
-          ←
+          â†
         </button>
 
         <form
@@ -549,7 +549,7 @@ export const InputPaginationRenderer: React.FC<{
           disabled={!hasNext || isLoading}
           className="px-3 py-1 text-sm border border-gray-300 rounded hover:bg-gray-50 disabled:opacity-50"
         >
-          →
+          â†’
         </button>
 
         <button

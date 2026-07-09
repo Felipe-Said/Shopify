@@ -34,7 +34,7 @@ const init = async () => {
   }
   process.env.ALLOW_CONFIG_MUTATIONS = 'false';
 
-  // Dedicated client for LISTEN — pool connections are transient and cannot
+  // Dedicated client for LISTEN â€” pool connections are transient and cannot
   // maintain a persistent LISTEN registration
   const listenClient = new Client(connectionSetting);
   await listenClient.connect();
@@ -45,7 +45,7 @@ const init = async () => {
     loadAndProcess().catch((e) => error(e));
   });
 
-  // If the LISTEN connection drops, restart the process — the parent will respawn it
+  // If the LISTEN connection drops, restart the process â€” the parent will respawn it
   listenClient.on('error', (e) => {
     error('LISTEN client error, restarting event-manager process:');
     error(e);
@@ -63,7 +63,7 @@ const init = async () => {
   const stuckCount = await storage.markStuckAsFailed();
   if (stuckCount > 0) {
     error(
-      `Marked ${stuckCount} stuck event(s) as failed — they were interrupted by a previous crash`
+      `Marked ${stuckCount} stuck event(s) as failed â€” they were interrupted by a previous crash`
     );
   }
 

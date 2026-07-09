@@ -7,7 +7,7 @@ export default {
       if (storeName) {
         return storeName.value;
       } else {
-        return 'An Amazing EverShop Store';
+        return 'An Amazing Cartify Store';
       }
     },
     storeDescription: (setting) => {
@@ -17,7 +17,7 @@ export default {
       if (storeDescription) {
         return storeDescription.value;
       } else {
-        return 'An Amazing EverShop Store';
+        return 'An Amazing Cartify Store';
       }
     },
     storeLanguage: () => getConfig('shop.language', 'en'),

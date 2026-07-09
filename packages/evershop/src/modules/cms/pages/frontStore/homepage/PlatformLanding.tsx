@@ -26,10 +26,10 @@ export default function PlatformLanding() {
                 <ArrowRight className="h-4 w-4" />
               </a>
               <a
-                href="/account/register"
+                href="/merchant/register"
                 className="inline-flex min-h-12 items-center justify-center rounded-md border border-slate-300 px-5 text-sm font-semibold text-slate-950 transition hover:border-slate-950"
               >
-                Criar conta
+                Criar loja
               </a>
             </div>
             <div className="mt-7 flex flex-wrap gap-4 text-sm text-slate-500">

@@ -1,8 +1,8 @@
-import { EvershopRequest } from '../../../../types/request.js';
-import { EvershopResponse } from '../../../../types/response.js';
+import { CartifyRequest } from '../../../../types/request.js';
+import { CartifyResponse } from '../../../../types/response.js';
 import escapePayload from '../../services/escapePayload.js';
 
-export default (request: EvershopRequest, response: EvershopResponse, next) => {
+export default (request: CartifyRequest, response: CartifyResponse, next) => {
   if (request.method === 'GET') {
     next();
   } else {

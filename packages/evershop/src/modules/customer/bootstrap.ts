@@ -2,7 +2,7 @@ import { request } from 'express';
 import { defaultPaginationFilters } from '../../lib/util/defaultPaginationFilters.js';
 import { hookable } from '../../lib/util/hookable.js';
 import { addProcessor } from '../../lib/util/registry.js';
-import type { EvershopRequest } from '../../types/request.js';
+import type { CartifyRequest } from '../../types/request.js';
 import loginCustomerWithEmail from './services/customer/loginCustomerWithEmail.js';
 import logoutCustomer from './services/customer/logoutCustomer.js';
 import { registerDefaultCustomerCollectionFilters } from './services/registerDefaultCustomerCollectionFilters.js';
@@ -67,7 +67,7 @@ export default () => {
    * @param {*} password
    * @param {*} callback
    */
-  (request as EvershopRequest).loginCustomerWithEmail = async function login(
+  (request as CartifyRequest).loginCustomerWithEmail = async function login(
     email,
     password,
     callback
@@ -78,19 +78,19 @@ export default () => {
     }
   };
 
-  (request as EvershopRequest).logoutCustomer = function logout(callback) {
+  (request as CartifyRequest).logoutCustomer = function logout(callback) {
     hookable(logoutCustomer.bind(this))();
     if (this.session) {
       this.session.save(callback);
     }
   };
 
-  (request as EvershopRequest).isCustomerLoggedIn =
+  (request as CartifyRequest).isCustomerLoggedIn =
     function isCustomerLoggedIn() {
       return !!this.session?.customerID;
     };
 
-  (request as EvershopRequest).getCurrentCustomer =
+  (request as CartifyRequest).getCurrentCustomer =
     function getCurrentCustomer() {
       return this.locals?.customer;
     };

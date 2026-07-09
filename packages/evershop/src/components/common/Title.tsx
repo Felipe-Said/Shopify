@@ -87,7 +87,7 @@ const validateTitle = (title: string, maxLength?: number): void => {
     }
 
     // Check if title starts/ends with separator characters
-    if (/^[-|•·]|\s[-|•·]\s*$/.test(title)) {
+    if (/^[-|â€¢Â·]|\s[-|â€¢Â·]\s*$/.test(title)) {
       console.warn(
         'Title: Title appears to start or end with separator characters.'
       );
@@ -151,7 +151,7 @@ const formatTitle = (
  * // With site branding
  * <Title
  *   title="Product Details"
- *   suffix="EverShop"
+ *   suffix="Cartify"
  *   separator=" | "
  * />
  *
@@ -174,7 +174,7 @@ const formatTitle = (
  * // Error page
  * <Title
  *   title="Page Not Found (404)"
- *   suffix="EverShop"
+ *   suffix="Cartify"
  * />
  */
 export function Title({

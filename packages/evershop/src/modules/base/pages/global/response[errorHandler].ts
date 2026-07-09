@@ -9,11 +9,11 @@ import {
   setPageMetaInfo
 } from '../../../../modules/cms/services/pageMetaInfo.js';
 import { AppStateContextValue, Config } from '../../../../types/appContext.js';
-import { EvershopRequest } from '../../../../types/request.js';
+import { CartifyRequest } from '../../../../types/request.js';
 import { loadWidgetInstances } from '../../../cms/services/widget/loadWidgetInstances.js';
 import { getContextValue } from '../../../graphql/services/contextHelper.js';
 
-export default async (request: EvershopRequest, response, next) => {
+export default async (request: CartifyRequest, response, next) => {
   try {
     /** If a rejected middleware called next(error) without throwing an error */
     if (isErrorHandlerTriggered(response)) {

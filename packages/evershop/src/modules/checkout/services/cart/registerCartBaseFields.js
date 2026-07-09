@@ -282,7 +282,7 @@ export function registerCartBaseFields(fields) {
           ) {
             return null;
           }
-          // By default, EverShop supports free shipping and flat rate shipping method
+          // By default, Cartify supports free shipping and flat rate shipping method
           // Load shipping method from database
           const shippingMethodQuery = select().from('shipping_method');
           shippingMethodQuery

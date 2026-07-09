@@ -64,25 +64,25 @@ addProcessor(
             let icon;
             switch (level) {
               case 'error':
-                icon = '❌'; // Error icon
+                icon = 'âŒ'; // Error icon
                 break;
               case 'warn':
-                icon = '⚠️ '; // Warning icon
+                icon = 'âš ï¸ '; // Warning icon
                 break;
               case 'info':
-                icon = 'ℹ️'; // Info icon
+                icon = 'â„¹ï¸'; // Info icon
                 break;
               case 'http':
-                icon = '🌐'; // HTTP icon
+                icon = 'ðŸŒ'; // HTTP icon
                 break;
               case 'verbose':
-                icon = '🔍'; // Verbose icon
+                icon = 'ðŸ”'; // Verbose icon
                 break;
               case 'debug':
-                icon = '🐛'; // Debug icon
+                icon = 'ðŸ›'; // Debug icon
                 break;
               case 'silly':
-                icon = '🤪'; // Silly icon
+                icon = 'ðŸ¤ª'; // Silly icon
                 break;
               default:
                 icon = '';

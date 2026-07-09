@@ -33,7 +33,7 @@ export async function seedAttributeGroup(): Promise<number> {
     })
     .execute(pool);
 
-  success(`✓ Created attribute group: Demo Products (ID: ${result.insertId})`);
+  success(`âœ“ Created attribute group: Demo Products (ID: ${result.insertId})`);
   return result.insertId;
 }
 
@@ -79,9 +79,9 @@ export async function seedAttributes(
                   option_text: optionData.option_text
                 })
                 .execute(pool);
-              success(`  ✓ Added option: ${optionData.option_text}`);
+              success(`  âœ“ Added option: ${optionData.option_text}`);
             } else {
-              info(`  → Option "${optionData.option_text}" already exists`);
+              info(`  â†’ Option "${optionData.option_text}" already exists`);
             }
           }
         }
@@ -100,7 +100,7 @@ export async function seedAttributes(
               group_id: demoAttributeGroupId
             })
             .execute(pool);
-          info(`  → Linked to Demo Products group`);
+          info(`  â†’ Linked to Demo Products group`);
         }
 
         continue;
@@ -112,7 +112,7 @@ export async function seedAttributes(
       }
 
       await createProductAttribute(attributeData, {});
-      success(`✓ Created attribute: ${attributeData.attribute_name}`);
+      success(`âœ“ Created attribute: ${attributeData.attribute_name}`);
     } catch (e: any) {
       error(
         `Failed to create attribute ${attributeData.attribute_name}: ${e.message}`

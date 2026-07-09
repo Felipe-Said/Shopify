@@ -1,10 +1,10 @@
 import { request } from 'express';
-import { EvershopRequest } from '../../types/request.js';
+import { CartifyRequest } from '../../types/request.js';
 import { loginUserWithEmail } from './services/loginUserWithEmail.js';
 import { logoutUser } from './services/logoutUser.js';
 
 export default () => {
-  (request as unknown as EvershopRequest).loginUserWithEmail =
+  (request as unknown as CartifyRequest).loginUserWithEmail =
     async function login(email, password, callback) {
       await loginUserWithEmail.bind(this)(email, password);
       if (this.session) {
@@ -12,7 +12,7 @@ export default () => {
       }
     };
 
-  (request as unknown as EvershopRequest).logoutUser = function logout(
+  (request as unknown as CartifyRequest).logoutUser = function logout(
     callback
   ) {
     logoutUser.bind(this)();
@@ -21,12 +21,12 @@ export default () => {
     }
   };
 
-  (request as unknown as EvershopRequest).isUserLoggedIn =
+  (request as unknown as CartifyRequest).isUserLoggedIn =
     function isUserLoggedIn() {
       return !!this.session.userID;
     };
 
-  (request as unknown as EvershopRequest).getCurrentUser =
+  (request as unknown as CartifyRequest).getCurrentUser =
     function getCurrentUser() {
       return this.locals.user;
     };

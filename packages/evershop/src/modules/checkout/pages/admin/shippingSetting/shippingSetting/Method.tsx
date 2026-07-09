@@ -68,7 +68,7 @@ function Method({ method, reload }: MethodProps) {
         <td className="border-none py-2">
           {method.conditionType
             ? `${method.min || 0} <= ${method.conditionType} <= ${
-                method.max || '∞'
+                method.max || 'âˆž'
               }`
             : 'None'}
         </td>

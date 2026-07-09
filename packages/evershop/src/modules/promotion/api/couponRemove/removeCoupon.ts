@@ -4,14 +4,14 @@ import {
   INVALID_PAYLOAD,
   OK
 } from '../../../../lib/util/httpStatus.js';
-import { EvershopRequest } from '../../../../types/request.js';
-import { EvershopResponse } from '../../../../types/response.js';
+import { CartifyRequest } from '../../../../types/request.js';
+import { CartifyResponse } from '../../../../types/response.js';
 import { getCartByUUID } from '../../../checkout/services/getCartByUUID.js';
 import { saveCart } from '../../../checkout/services/saveCart.js';
 
 export default async (
-  request: EvershopRequest,
-  response: EvershopResponse,
+  request: CartifyRequest,
+  response: CartifyResponse,
   next
 ) => {
   try {

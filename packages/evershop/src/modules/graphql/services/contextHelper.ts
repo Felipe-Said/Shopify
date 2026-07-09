@@ -1,9 +1,9 @@
 import { Application } from 'express';
 import { get } from '../../../lib/util/get.js';
-import { EvershopRequest } from '../../../types/request.js';
+import { CartifyRequest } from '../../../types/request.js';
 
 export function getContextValue<T>(
-  request: EvershopRequest,
+  request: CartifyRequest,
   key: string,
   defaultValue?: T,
   toString: boolean = false
@@ -23,7 +23,7 @@ export function getContextValue<T>(
  * Pass the request instance if you want to set a request level value
  */
 export function setContextValue<T>(
-  requestOrApp: EvershopRequest | Application,
+  requestOrApp: CartifyRequest | Application,
   key: string,
   value: T
 ): void {
@@ -32,7 +32,7 @@ export function setContextValue<T>(
   requestOrApp.locals.context[key] = value; // We just overwrite the value if it already exists
 }
 
-export function getContext(request: EvershopRequest): Record<string, any> {
+export function getContext(request: CartifyRequest): Record<string, any> {
   if (!request.app) {
     throw new Error('A request object must be provided');
   }
@@ -42,7 +42,7 @@ export function getContext(request: EvershopRequest): Record<string, any> {
 }
 
 export function hasContextValue(
-  request: EvershopRequest,
+  request: CartifyRequest,
   key: string
 ): boolean {
   const requestLevelContext = get(request, 'locals.context', {});

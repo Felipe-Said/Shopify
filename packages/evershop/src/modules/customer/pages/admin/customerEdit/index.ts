@@ -1,10 +1,10 @@
 import { select } from '@evershop/postgres-query-builder';
 import { pool } from '../../../../../lib/postgres/connection.js';
-import { EvershopResponse } from '../../../../../types/response.js';
+import { CartifyResponse } from '../../../../../types/response.js';
 import { setPageMetaInfo } from '../../../../cms/services/pageMetaInfo.js';
 import { setContextValue } from '../../../../graphql/services/contextHelper.js';
 
-export default async (request, response: EvershopResponse, next) => {
+export default async (request, response: CartifyResponse, next) => {
   try {
     const query = select();
     query.from('customer');

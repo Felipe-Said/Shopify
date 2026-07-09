@@ -42,7 +42,7 @@ export async function seedPages(): Promise<void> {
         .load(connection, false);
 
       if (existing) {
-        info(`  ⊘ Page "${pageData.url_key}" already exists, skipping...`);
+        info(`  âŠ˜ Page "${pageData.url_key}" already exists, skipping...`);
         skipped++;
         continue;
       }
@@ -67,12 +67,12 @@ export async function seedPages(): Promise<void> {
         })
         .execute(connection);
 
-      success(`  ✓ Created page: ${pageData.name} (/${pageData.url_key})`);
+      success(`  âœ“ Created page: ${pageData.name} (/${pageData.url_key})`);
       created++;
     }
 
     success(
-      `✓ CMS pages seeding complete: ${created} created, ${skipped} skipped`
+      `âœ“ CMS pages seeding complete: ${created} created, ${skipped} skipped`
     );
   } catch (e: any) {
     error(`Failed to seed pages: ${e.message}`);

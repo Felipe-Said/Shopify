@@ -25,7 +25,7 @@ import type { CouponData } from '../modules/promotion/services/coupon/createCoup
  * ```
  */
 export interface ValueRegistry {
-  // ── Catalog: Product ──────────────────────────────────────────────────────
+  // â”€â”€ Catalog: Product â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
   /** Product input data before the create transaction runs */
   productDataBeforeCreate: ProductData;
@@ -36,7 +36,7 @@ export interface ValueRegistry {
   /** AJV JSON schema used to validate product data on update */
   updateProductDataJsonSchema: AnySchemaObject;
 
-  // ── Catalog: Category ─────────────────────────────────────────────────────
+  // â”€â”€ Catalog: Category â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
   /** Category input data before the create transaction runs */
   categoryDataBeforeCreate: CategoryData;
@@ -47,7 +47,7 @@ export interface ValueRegistry {
   /** AJV JSON schema used to validate category data on update */
   updateCategoryDataJsonSchema: AnySchemaObject;
 
-  // ── Catalog: Attribute ────────────────────────────────────────────────────
+  // â”€â”€ Catalog: Attribute â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
   /** Product attribute input data before the create transaction runs */
   attributeDataBeforeCreate: CreateAttributeData;
@@ -58,12 +58,12 @@ export interface ValueRegistry {
   /** AJV JSON schema used to validate attribute data on update */
   updateAttributeDataJsonSchema: AnySchemaObject;
 
-  // ── Catalog: Collection ───────────────────────────────────────────────────
+  // â”€â”€ Catalog: Collection â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
   /** Collection input data before the update transaction runs */
   collectionDataBeforeUpdate: CollectionData;
 
-  // ── Promotion: Coupon ─────────────────────────────────────────────────────
+  // â”€â”€ Promotion: Coupon â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
   /** Coupon input data before the create transaction runs */
   couponDataBeforeCreate: CouponData;
@@ -74,7 +74,7 @@ export interface ValueRegistry {
   /** AJV JSON schema used to validate coupon data on update */
   updateCouponDataJsonSchema: AnySchemaObject;
 
-  // ── Customer ──────────────────────────────────────────────────────────────
+  // â”€â”€ Customer â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
   /** Customer input data before the update transaction runs */
   customerDataBeforeUpdate: CustomerData;
@@ -83,7 +83,7 @@ export interface ValueRegistry {
   /** AJV JSON schema used to validate customer data on update */
   updateCustomerDataJsonSchema: AnySchemaObject;
 
-  // ── CMS: Page ─────────────────────────────────────────────────────────────
+  // â”€â”€ CMS: Page â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
   /** CMS page input data before the create transaction runs */
   pageDataBeforeCreate: Record<string, unknown>;
@@ -94,7 +94,7 @@ export interface ValueRegistry {
   /** AJV JSON schema used to validate page data on update */
   updatePageDataJsonSchema: AnySchemaObject;
 
-  // ── CMS: Widget ───────────────────────────────────────────────────────────
+  // â”€â”€ CMS: Widget â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
   /** Widget input data before the create transaction runs */
   widgetDataBeforeCreate: WidgetData;
@@ -105,15 +105,15 @@ export interface ValueRegistry {
   /** AJV JSON schema used to validate widget data on update */
   updateWidgetDataJsonSchema: AnySchemaObject;
 
-  // ── OMS ───────────────────────────────────────────────────────────────────
+  // â”€â”€ OMS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
   /**
-   * Payment+shipment status → order status mapping.
+   * Payment+shipment status â†’ order status mapping.
    * Keys are `"paymentStatus:shipmentStatus"` strings; values are order status strings.
    */
   psoMapping: Record<string, string>;
 
-  // ── Email ─────────────────────────────────────────────────────────────────
+  // â”€â”€ Email â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
   /** Arguments passed to the email service before every `sendEmail` call */
   emailArguments: SendEmailArguments;
@@ -135,7 +135,7 @@ export interface ValueRegistry {
   /** Send-email arguments for the customer welcome email */
   customerWelcomeEmailArguments: SendEmailArguments;
 
-  // ── Checkout ──────────────────────────────────────────────────────────────
+  // â”€â”€ Checkout â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
   /**
    * Cart `Item` instance before it is added to the cart.
@@ -143,7 +143,7 @@ export interface ValueRegistry {
    */
   cartItemBeforeAdd: unknown;
 
-  // ── PayPal ────────────────────────────────────────────────────────────────
+  // â”€â”€ PayPal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
   /** PayPal purchase-unit amount object before it is sent to the PayPal Orders API */
   paypalFinalAmount: PurchaseUnit['amount'];

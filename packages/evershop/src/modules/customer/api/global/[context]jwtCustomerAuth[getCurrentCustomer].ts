@@ -4,9 +4,9 @@ import {
   TOKEN_TYPES,
   verifyToken
 } from '../../../../lib/util/jwt.js';
-import { EvershopRequest } from '../../../../types/request.js';
+import { CartifyRequest } from '../../../../types/request.js';
 
-export default (request: EvershopRequest, response, next) => {
+export default (request: CartifyRequest, response, next) => {
   try {
     // Get token from Authorization header
     const authHeader = request.headers.authorization;

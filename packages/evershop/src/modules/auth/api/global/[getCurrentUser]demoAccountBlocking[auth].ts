@@ -1,8 +1,8 @@
 import { getEnv } from '../../../../lib/util/getEnv.js';
 import { UNAUTHORIZED } from '../../../../lib/util/httpStatus.js';
-import { EvershopRequest } from '../../../../types/request.js';
+import { CartifyRequest } from '../../../../types/request.js';
 
-export default (request: EvershopRequest, response, next) => {
+export default (request: CartifyRequest, response, next) => {
   const { currentRoute } = request;
   if (
     request.method === 'GET' ||

@@ -22,7 +22,7 @@ export async function seedProductImages(
 
       // Download image if it's a remote URL
       if (imageData.url && imageData.url.startsWith('http')) {
-        info(`  → Downloading image: ${imageData.url}`);
+        info(`  â†’ Downloading image: ${imageData.url}`);
 
         // Get filename from URL
         const filename = getFilenameFromUrl(imageData.url);
@@ -46,7 +46,7 @@ export async function seedProductImages(
 
           // Convert to media URL
           finalImageUrl = `/assets/${subPath}/${filename}`;
-          success(`  ✓ Downloaded and saved: ${mediaDir}`);
+          success(`  âœ“ Downloaded and saved: ${mediaDir}`);
           // Check if image record already exists
           const existingImage = await select()
             .from('product_image')
@@ -63,16 +63,16 @@ export async function seedProductImages(
                 is_main: imageData.isMain ? 1 : 0
               })
               .execute(pool);
-            info(`  ✓ Added image record to database`);
+            info(`  âœ“ Added image record to database`);
           } else {
-            info(`  → Image already exists in database`);
+            info(`  â†’ Image already exists in database`);
           }
         } catch (downloadErr: any) {
-          error(`  ✗ Failed to download image: ${downloadErr.message}`);
+          error(`  âœ— Failed to download image: ${downloadErr.message}`);
         }
       }
     } catch (e: any) {
-      warning(`  ⚠️  Failed to process image ${i + 1}: ${e.message}`);
+      warning(`  âš ï¸  Failed to process image ${i + 1}: ${e.message}`);
     }
   }
 }

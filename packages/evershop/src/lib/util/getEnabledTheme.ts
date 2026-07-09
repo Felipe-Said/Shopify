@@ -17,32 +17,39 @@ export function getEnabledTheme(): Theme | null {
   if (!themeConfig) {
     return null;
   }
-  if (!existsSync(resolve(CONSTANTS.THEMEPATH, themeConfig))) {
+  const themePath = resolve(CONSTANTS.THEMEPATH, themeConfig);
+  const isShopifyLiquidTheme = existsSync(
+    resolve(themePath, 'layout', 'theme.liquid')
+  );
+  if (!existsSync(themePath)) {
     error(
       `Theme '${themeConfig}' does not exist in ${CONSTANTS.THEMEPATH}. 
       Please check your theme configuration in the system settings.`
     );
     process.exit(1);
+  } else if (isShopifyLiquidTheme) {
+    error(
+      `Theme '${themeConfig}' is a Shopify Liquid theme. Cartify can inspect this theme with "npm run theme:shopify:inspect -- ./themes/${themeConfig}", but rendering it requires the Shopify Liquid adapter.`
+    );
+    process.exit(1);
   } else if (
     isDevelopmentMode() &&
-    !existsSync(resolve(CONSTANTS.THEMEPATH, themeConfig, 'src'))
+    !existsSync(resolve(themePath, 'src'))
   ) {
     error(
       `Theme '${themeConfig}' must have a 'src' directory at ${resolve(
-        CONSTANTS.THEMEPATH,
-        themeConfig,
+        themePath,
         'src'
       )}. This is required for development mode.`
     );
     process.exit(1);
   } else if (
     isProductionMode() &&
-    !existsSync(resolve(CONSTANTS.THEMEPATH, themeConfig, 'dist'))
+    !existsSync(resolve(themePath, 'dist'))
   ) {
     error(
       `Theme '${themeConfig}' must have a 'dist' directory at ${resolve(
-        CONSTANTS.THEMEPATH,
-        themeConfig,
+        themePath,
         'dist'
       )}. This is required for production mode. Please run the compile command to generate the dist directory.`
     );
@@ -50,10 +57,8 @@ export function getEnabledTheme(): Theme | null {
   } else {
     return {
       name: themeConfig,
-      path: resolve(CONSTANTS.THEMEPATH, themeConfig),
-      srcPath: isDevelopmentMode()
-        ? resolve(CONSTANTS.THEMEPATH, themeConfig, 'src')
-        : undefined
+      path: themePath,
+      srcPath: isDevelopmentMode() ? resolve(themePath, 'src') : undefined
     };
   }
 }

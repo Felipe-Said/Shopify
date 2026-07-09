@@ -107,7 +107,7 @@ export const DefaultCartItemList: React.FC<CartItemsTableProps> = ({
                     disabled={loading || quantity <= 1}
                     className="px-1 disabled:opacity-50 text-lg"
                   >
-                    −
+                    âˆ’
                   </button>
                   <span className="min-w-12 text-center">{quantity}</span>
                   <button

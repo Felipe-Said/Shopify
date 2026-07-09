@@ -63,7 +63,7 @@ function CountryOptions(props) {
     { value: 'CU', text: 'Cuba' },
     { value: 'CY', text: 'Cyprus' },
     { value: 'CZ', text: 'Czech Republic' },
-    { value: 'CI', text: 'Côte d’Ivoire' },
+    { value: 'CI', text: 'CÃ´te dâ€™Ivoire' },
     { value: 'DK', text: 'Denmark' },
     { value: 'DJ', text: 'Djibouti' },
     { value: 'DM', text: 'Dominica' },
@@ -186,8 +186,8 @@ function CountryOptions(props) {
     { value: 'RO', text: 'Romania' },
     { value: 'RU', text: 'Russia' },
     { value: 'RW', text: 'Rwanda' },
-    { value: 'RE', text: 'Réunion' },
-    { value: 'BL', text: 'Saint Barthélemy' },
+    { value: 'RE', text: 'RÃ©union' },
+    { value: 'BL', text: 'Saint BarthÃ©lemy' },
     { value: 'SH', text: 'Saint Helena' },
     { value: 'KN', text: 'Saint Kitts and Nevis' },
     { value: 'LC', text: 'Saint Lucia' },
@@ -218,7 +218,7 @@ function CountryOptions(props) {
     { value: 'SE', text: 'Sweden' },
     { value: 'CH', text: 'Switzerland' },
     { value: 'SY', text: 'Syria' },
-    { value: 'ST', text: 'São Tomé and Príncipe' },
+    { value: 'ST', text: 'SÃ£o TomÃ© and PrÃ­ncipe' },
     { value: 'TW', text: 'Taiwan' },
     { value: 'TJ', text: 'Tajikistan' },
     { value: 'TZ', text: 'Tanzania' },
@@ -251,7 +251,7 @@ function CountryOptions(props) {
     { value: 'YE', text: 'Yemen' },
     { value: 'ZM', text: 'Zambia' },
     { value: 'ZW', text: 'Zimbabwe' },
-    { value: 'AX', text: 'Åland Islands' }
+    { value: 'AX', text: 'Ã…land Islands' }
   ].filter((c) => {
     if (countries) {
       return countries.indexOf(c.value) !== -1;

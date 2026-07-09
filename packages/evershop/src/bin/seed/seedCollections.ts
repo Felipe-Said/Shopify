@@ -31,7 +31,7 @@ export async function seedCollections(): Promise<void> {
       }
 
       await createCollection(collectionData, {});
-      success(`✓ Created collection: ${collectionData.name}`);
+      success(`âœ“ Created collection: ${collectionData.name}`);
     } catch (e: any) {
       error(`Failed to create collection ${collectionData.name}: ${e.message}`);
     }

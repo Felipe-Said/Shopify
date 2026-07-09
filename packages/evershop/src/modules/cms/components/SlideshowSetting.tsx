@@ -506,7 +506,7 @@ export default function SlideshowSetting({
                   currentSlides[activeSlideIndex]?.height ? (
                     <p>
                       Image dimensions: {currentSlides[activeSlideIndex].width}{' '}
-                      × {currentSlides[activeSlideIndex].height} pixels
+                      Ã— {currentSlides[activeSlideIndex].height} pixels
                     </p>
                   ) : (
                     <p>Detecting image dimensions...</p>

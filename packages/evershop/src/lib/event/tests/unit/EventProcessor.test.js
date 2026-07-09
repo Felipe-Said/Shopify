@@ -80,7 +80,7 @@ describe('createEventProcessor', () => {
       // Allow fire-and-forget promises to settle
       await new Promise((r) => setImmediate(r));
 
-      // callSubscribers is mocked — verify it was called once per event with the right args
+      // callSubscribers is mocked â€” verify it was called once per event with the right args
       expect(callSubscribers).toHaveBeenCalledTimes(2);
       expect(callSubscribers).toHaveBeenCalledWith([subscriber], {
         orderId: 42
@@ -127,7 +127,7 @@ describe('createEventProcessor', () => {
         subscribers: []
       });
 
-      // Start first call — it will hang on claimBatch
+      // Start first call â€” it will hang on claimBatch
       const first = loadAndProcess();
       // Second call fires while first is still awaiting claimBatch
       await loadAndProcess();

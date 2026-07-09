@@ -407,7 +407,7 @@ async function createOverrideFile() {
       boxen(
         kleur.green(
           `Successfully created ${copiedFiles.length} override file(s):\n`
-        ) + copiedFiles.map((file) => kleur.white(`• ${file}`)).join('\n'),
+        ) + copiedFiles.map((file) => kleur.white(`â€¢ ${file}`)).join('\n'),
         {
           padding: 1,
           borderColor: 'green'

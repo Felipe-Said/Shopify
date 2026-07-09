@@ -1,0 +1,7 @@
+{
+  "name": "Merchant Signup",
+  "description": "Create a merchant administrator account",
+  "methods": ["POST"],
+  "path": "/merchant/signup",
+  "access": "public"
+}

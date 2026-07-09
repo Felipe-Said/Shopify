@@ -31,7 +31,7 @@ export async function downloadImage(
       ) {
         const redirectUrl = response.headers.location;
         if (redirectUrl) {
-          info(`  → Following redirect to: ${redirectUrl}`);
+          info(`  â†’ Following redirect to: ${redirectUrl}`);
           downloadImage(redirectUrl, outputPath).then(resolve).catch(reject);
           return;
         }
@@ -48,7 +48,7 @@ export async function downloadImage(
 
       pipeline(response, fileStream)
         .then(() => {
-          info(`  ✓ Downloaded: ${url} → ${outputPath}`);
+          info(`  âœ“ Downloaded: ${url} â†’ ${outputPath}`);
           resolve(outputPath);
         })
         .catch((err) => {

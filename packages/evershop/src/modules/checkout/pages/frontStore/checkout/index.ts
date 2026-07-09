@@ -1,6 +1,6 @@
 import { translate } from '../../../../../lib/locale/translate/translate.js';
 import { buildUrl } from '../../../../../lib/router/buildUrl.js';
-import { EvershopRequest } from '../../../../../types/request.js';
+import { CartifyRequest } from '../../../../../types/request.js';
 import { setPageMetaInfo } from '../../../../cms/services/pageMetaInfo.js';
 import { getMyCart } from '../../../services/getMyCart.js';
 
@@ -14,7 +14,7 @@ declare module 'express-session' {
   }
 }
 
-export default async (request: EvershopRequest, response, next) => {
+export default async (request: CartifyRequest, response, next) => {
   const customer = request.getCurrentCustomer();
   const cart = await getMyCart(request.sessionID || '', customer?.customer_id);
   if (!cart) {

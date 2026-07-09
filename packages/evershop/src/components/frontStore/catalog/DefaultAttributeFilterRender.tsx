@@ -140,7 +140,7 @@ export const DefaultAttributeFilterRender: React.FC<{
                   className="hover:text-destructive text-sm transition-colors"
                   title="Clear all"
                 >
-                  ✕
+                  âœ•
                 </Button>
               )}
             </div>

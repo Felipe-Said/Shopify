@@ -9,7 +9,7 @@ export function onListening() {
   const message = boxen(
     `Your website is running at "${getBaseUrl()}"`,
     {
-      title: 'EverShop',
+      title: 'Cartify',
       titleAlignment: 'center',
       padding: 1,
       margin: 1,

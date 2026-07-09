@@ -59,7 +59,7 @@ import type {
   WidgetRow
 } from '../../types/db/index.js';
 
-// ---- Known EverShop table names ------------------------------------------------
+// ---- Known Cartify table names ------------------------------------------------
 
 export type TableName =
   | 'admin_user'
@@ -110,7 +110,7 @@ export type TableName =
   | 'variant_group'
   | 'widget';
 
-// ---- Table → column mapping (derived from Row types, always stays in sync) -----
+// ---- Table â†’ column mapping (derived from Row types, always stays in sync) -----
 
 type TableColumnMap = {
   admin_user: keyof AdminUserRow;
@@ -169,7 +169,7 @@ type TableColumnMap = {
  */
 export type AnyTableName = TableName | (string & {});
 
-// ---- Table → row type mapping (for typed write operations) -------------------
+// ---- Table â†’ row type mapping (for typed write operations) -------------------
 
 type TableRowMap = {
   admin_user: AdminUserRow;
@@ -366,7 +366,7 @@ export interface TypedDeleteQuery<T extends AnyTableName> {
   ): Promise<any[]>;
 }
 
-/** Typed INSERT … ON CONFLICT DO UPDATE query. */
+/** Typed INSERT â€¦ ON CONFLICT DO UPDATE query. */
 export interface TypedInsertOnUpdateQuery<T extends AnyTableName> {
   given(data: Partial<WriteRow<RowOf<T>>>): TypedInsertOnUpdateQuery<T>;
   prime(field: ColumnOf<T>, value: any): TypedInsertOnUpdateQuery<T>;
@@ -531,22 +531,22 @@ export function select(
   return _select(...(args as string[])) as unknown as UnboundSelectChain;
 }
 
-/** Insert a row into a known EverShop table. `.given()` suggests columns of `T`. */
+/** Insert a row into a known Cartify table. `.given()` suggests columns of `T`. */
 export function insert<T extends AnyTableName>(table: T): TypedInsertQuery<T> {
   return _insert(table) as unknown as TypedInsertQuery<T>;
 }
 
-/** Update rows in a known EverShop table. `.given()` / `.where()` suggest columns of `T`. */
+/** Update rows in a known Cartify table. `.given()` / `.where()` suggest columns of `T`. */
 export function update<T extends AnyTableName>(table: T): TypedUpdateQuery<T> {
   return _update(table) as unknown as TypedUpdateQuery<T>;
 }
 
-/** Delete rows from a known EverShop table. `.where()` suggests columns of `T`. */
+/** Delete rows from a known Cartify table. `.where()` suggests columns of `T`. */
 export function del<T extends AnyTableName>(table: T): TypedDeleteQuery<T> {
   return _del(table) as unknown as TypedDeleteQuery<T>;
 }
 
-/** Insert or update rows in a known EverShop table on conflict. `.given()` suggests columns of `T`. */
+/** Insert or update rows in a known Cartify table on conflict. `.given()` suggests columns of `T`. */
 export function insertOnUpdate<T extends AnyTableName>(
   table: T,
   conflictColumns: Array<ColumnOf<T>>

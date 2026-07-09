@@ -108,7 +108,7 @@ export const DefaultCategoryFilterRender: React.FC<{
             className="text-muted-foreground hover:text-destructive text-sm transition-colors"
             title="Clear categories"
           >
-            ✕
+            âœ•
           </button>
         )}
       </div>

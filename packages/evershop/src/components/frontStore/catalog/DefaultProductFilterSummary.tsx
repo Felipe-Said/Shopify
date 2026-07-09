@@ -32,7 +32,7 @@ export const getFilterSummary = (
   const maxPrice = currentFilters.find((f) => f.key === 'max_price');
   if (minPrice || maxPrice) {
     const min = minPrice?.value || priceRange?.min.toString() || '0';
-    const max = maxPrice?.value || priceRange?.max.toString() || '∞';
+    const max = maxPrice?.value || priceRange?.max.toString() || 'âˆž';
     summaries.push(
       _('Price: ${value}', {
         value: `${formatPrice(

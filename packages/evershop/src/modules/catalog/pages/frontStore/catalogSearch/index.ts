@@ -1,9 +1,9 @@
 import { translate } from '../../../../../lib/locale/translate/translate.js';
 import { get } from '../../../../../lib/util/get.js';
-import { EvershopRequest } from '../../../../../types/request.js';
+import { CartifyRequest } from '../../../../../types/request.js';
 import { setPageMetaInfo } from '../../../../cms/services/pageMetaInfo.js';
 
-export default (request: EvershopRequest, response, next) => {
+export default (request: CartifyRequest, response, next) => {
   // Get the keyword from the request query
   const keyword = get(request, 'query.keyword');
   if (!keyword) {

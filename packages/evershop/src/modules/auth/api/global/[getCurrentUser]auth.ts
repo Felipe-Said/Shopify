@@ -1,5 +1,5 @@
 import { UNAUTHORIZED } from '../../../../lib/util/httpStatus.js';
-import { EvershopRequest } from '../../../../types/request.js';
+import { CartifyRequest } from '../../../../types/request.js';
 
 /**
  * This is the session based authentication middleware.
@@ -9,7 +9,7 @@ import { EvershopRequest } from '../../../../types/request.js';
  * @param {*} next
  * @returns
  */
-export default async (request: EvershopRequest, response, next) => {
+export default async (request: CartifyRequest, response, next) => {
   // Get the current route
   const { currentRoute } = request;
   const currentAdminUser = request.getCurrentUser();

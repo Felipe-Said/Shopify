@@ -5,11 +5,11 @@ import {
   INTERNAL_SERVER_ERROR,
   OK
 } from '../../../../lib/util/httpStatus.js';
-import { EvershopRequest } from '../../../../types/request.js';
+import { CartifyRequest } from '../../../../types/request.js';
 import { getMyCart } from '../../services/getMyCart.js';
 import { saveCart } from '../../services/saveCart.js';
 
-export default async (request: EvershopRequest, response, next) => {
+export default async (request: CartifyRequest, response, next) => {
   try {
     const { item_id } = request.params;
     const { sessionID, customer } = request.locals;
